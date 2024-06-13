@@ -2,7 +2,9 @@ package com.orgvendas.domain.service;
 
 import com.orgvendas.domain.Vendedor;
 import com.orgvendas.domain.dto.VendedorCreateDto;
+import com.orgvendas.domain.dto.VendedorDto;
 import com.orgvendas.domain.dto.VendedorUpdate;
+import com.orgvendas.domain.mapper.VendedorMapper;
 import com.orgvendas.domain.repository.VendedorRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,7 @@ public class VendedorService {
         this.vendedorRepository = vendedorRepository;
     }
 
+    // Cria um vendedor
     public ResponseEntity<Vendedor> create(VendedorCreateDto vendedorCreateDto) {
         Vendedor newVendedor = new Vendedor();
         BeanUtils.copyProperties(vendedorCreateDto, newVendedor);
@@ -28,10 +31,14 @@ public class VendedorService {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    public List<Vendedor> getAll() {
-        return vendedorRepository.findAll();
+    //Retorna todos os vendedores
+    public List<VendedorDto> getAll() {
+        List<Vendedor> vendedorList = vendedorRepository.findAll();
+        new VendedorMapper();
+        return VendedorMapper.mapListVendedores(vendedorList);
     }
 
+    //Atualiza os vendedores
     public ResponseEntity<Object> update(VendedorUpdate vendedorUpdate, Long id) {
         Optional<Vendedor> vendedorOptional = vendedorRepository.findById(id);
 
@@ -47,15 +54,18 @@ public class VendedorService {
 
     }
 
+    // busca por id
     public ResponseEntity<Object> getById(Long id) {
         Optional<Vendedor> vendedorOptional = vendedorRepository.findById(id);
         if (vendedorOptional.isPresent()) {
             Vendedor vendedor = vendedorOptional.get();
-            return ResponseEntity.ok().body(vendedor);
+            VendedorDto vendedorDto = new VendedorMapper().mapVendedorDto(vendedor);
+            return ResponseEntity.ok().body(vendedorDto);
         }
         return ResponseEntity.notFound().build();
     }
 
+    //Deleta um vendedor
     public ResponseEntity<String> delete(Long id) {
         Optional<Vendedor> vendedorOptional = vendedorRepository.findById(id);
 
@@ -63,7 +73,7 @@ public class VendedorService {
             Vendedor vendedor = vendedorOptional.get();
             vendedorRepository.deleteById(id);
             return ResponseEntity.ok().body("O(a) vendedor(a) " + vendedor.getNome()+ " foi deletado(a). ");
-        }else {
+        } else{
             return ResponseEntity.notFound().build();
         }
     }

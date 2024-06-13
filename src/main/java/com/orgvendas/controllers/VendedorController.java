@@ -2,6 +2,7 @@ package com.orgvendas.controllers;
 
 import com.orgvendas.domain.Vendedor;
 import com.orgvendas.domain.dto.VendedorCreateDto;
+import com.orgvendas.domain.dto.VendedorDto;
 import com.orgvendas.domain.dto.VendedorUpdate;
 import com.orgvendas.domain.service.VendedorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class VendedorController {
     }
 
     @GetMapping
-    public List<Vendedor> getAll() {
+    public List<VendedorDto> getAll() {
         return vendedorService.getAll();
     }
 
