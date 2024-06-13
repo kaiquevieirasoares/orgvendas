@@ -1,10 +1,14 @@
 package com.orgvendas.domain.mapper;
 
+import com.orgvendas.domain.dto.vendas.VendasCreateDto;
 import com.orgvendas.domain.entity.Vendedor;
 import com.orgvendas.domain.dto.vendedor.VendedorDto;
+import com.orgvendas.domain.repository.VendedorRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 
 public class VendedorMapper {
 
