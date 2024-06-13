@@ -11,14 +11,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class VendedorService {
 
-
     VendedorRepository vendedorRepository;
 
     public VendedorService(VendedorRepository vendedorRepository) {
         this.vendedorRepository = vendedorRepository;
     }
 
-    public ResponseEntity<Object> create(VendedorCreateDto vendedorCreateDto) {
+    public ResponseEntity<Vendedor> create(VendedorCreateDto vendedorCreateDto) {
         Vendedor newVendedor = new Vendedor();
         BeanUtils.copyProperties(vendedorCreateDto, newVendedor);
         vendedorRepository.save(newVendedor);

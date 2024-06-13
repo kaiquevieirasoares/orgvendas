@@ -14,8 +14,6 @@ public class Vendedor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
-    @NotBlank
     @Column
     private String nome;
 
