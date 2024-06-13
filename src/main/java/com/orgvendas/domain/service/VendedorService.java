@@ -3,7 +3,7 @@ package com.orgvendas.domain.service;
 import com.orgvendas.domain.entity.Vendedor;
 import com.orgvendas.domain.dto.vendedor.VendedorCreateDto;
 import com.orgvendas.domain.dto.vendedor.VendedorDto;
-import com.orgvendas.domain.dto.vendedor.VendedorUpdate;
+import com.orgvendas.domain.dto.vendedor.VendedorUpdateDto;
 import com.orgvendas.domain.mapper.VendedorMapper;
 import com.orgvendas.domain.repository.VendedorRepository;
 import org.springframework.beans.BeanUtils;
@@ -39,12 +39,12 @@ public class VendedorService {
     }
 
     //Atualiza os vendedores
-    public ResponseEntity<Object> update(VendedorUpdate vendedorUpdate, Long id) {
+    public ResponseEntity<Object> update(VendedorUpdateDto vendedorUpdateDto, Long id) {
         Optional<Vendedor> vendedorOptional = vendedorRepository.findById(id);
 
         if (vendedorOptional.isPresent()) {
             Vendedor vendedor = vendedorOptional.get();
-            BeanUtils.copyProperties(vendedorUpdate, vendedor);
+            BeanUtils.copyProperties(vendedorUpdateDto, vendedor);
             vendedorRepository.save(vendedor);
             return ResponseEntity.noContent().build();
         }

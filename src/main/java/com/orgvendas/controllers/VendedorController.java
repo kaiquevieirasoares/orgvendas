@@ -3,7 +3,7 @@ package com.orgvendas.controllers;
 import com.orgvendas.domain.entity.Vendedor;
 import com.orgvendas.domain.dto.vendedor.VendedorCreateDto;
 import com.orgvendas.domain.dto.vendedor.VendedorDto;
-import com.orgvendas.domain.dto.vendedor.VendedorUpdate;
+import com.orgvendas.domain.dto.vendedor.VendedorUpdateDto;
 import com.orgvendas.domain.service.VendedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,12 +38,12 @@ public class VendedorController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> update(@PathVariable Long id ,@RequestBody VendedorUpdate vendedorUpdate) {
+    public ResponseEntity<Object> update(@PathVariable Long id ,@RequestBody VendedorUpdateDto vendedorUpdateDto) {
 
-        if (vendedorUpdate.nome()==null || vendedorUpdate.nome().isEmpty()){
+        if (vendedorUpdateDto.nome()==null || vendedorUpdateDto.nome().isEmpty()){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }else{
-            return vendedorService.update(vendedorUpdate, id);
+            return vendedorService.update(vendedorUpdateDto, id);
         }
 
     }
