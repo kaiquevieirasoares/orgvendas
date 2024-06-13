@@ -1,4 +1,4 @@
-package com.orgvendas.domain.dto;
+package com.orgvendas.domain.dto.vendedor;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

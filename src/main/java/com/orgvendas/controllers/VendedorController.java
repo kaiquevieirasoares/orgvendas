@@ -1,9 +1,9 @@
 package com.orgvendas.controllers;
 
-import com.orgvendas.domain.Vendedor;
-import com.orgvendas.domain.dto.VendedorCreateDto;
-import com.orgvendas.domain.dto.VendedorDto;
-import com.orgvendas.domain.dto.VendedorUpdate;
+import com.orgvendas.domain.entity.Vendedor;
+import com.orgvendas.domain.dto.vendedor.VendedorCreateDto;
+import com.orgvendas.domain.dto.vendedor.VendedorDto;
+import com.orgvendas.domain.dto.vendedor.VendedorUpdate;
 import com.orgvendas.domain.service.VendedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,7 @@
 package com.orgvendas.domain.mapper;
 
-import com.orgvendas.domain.Vendedor;
-import com.orgvendas.domain.dto.VendedorDto;
+import com.orgvendas.domain.entity.Vendedor;
+import com.orgvendas.domain.dto.vendedor.VendedorDto;
 
 import java.util.ArrayList;
 import java.util.List;
