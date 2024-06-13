@@ -1,10 +1,7 @@
 package com.orgvendas.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,7 +14,7 @@ public class Vendedor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String nome;
 
     @Column
@@ -25,7 +22,5 @@ public class Vendedor {
 
     @Column
     private double mediaDeVendas;
-
-
 
 }
