@@ -22,6 +22,8 @@ public class VendasService {
         this.vendasRepository = vendasRepository;
         this.vendedorRepository = vendedorRepository;
     }
+
+    //cria uma venda
     public ResponseEntity<Object> create(VendasCreateDto vendasCreateDto) {
         Long id = vendasCreateDto.vendedorId();
 
@@ -29,6 +31,8 @@ public class VendasService {
 
         if (vendedorOptional.isPresent()) {
             Vendedor vendedor = vendedorOptional.get();
+
+            vendedor.setTotalDeVendas(vendedor.getTotalDeVendas() + 1);
 
             Vendas venda =  VendasMapper.createVendas(vendasCreateDto,vendedor);
 
