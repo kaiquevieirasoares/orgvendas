@@ -1,16 +1,14 @@
 package com.orgvendas.controllers;
 
+import com.orgvendas.domain.dto.vendedor.DatasDeVendasDto;
 import com.orgvendas.domain.entity.Vendedor;
 import com.orgvendas.domain.dto.vendedor.VendedorCreateDto;
-import com.orgvendas.domain.dto.vendedor.VendedorDto;
 import com.orgvendas.domain.dto.vendedor.VendedorUpdateDto;
 import com.orgvendas.domain.service.VendedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/vendedor")
@@ -24,8 +22,17 @@ public class VendedorController {
     }
 
     @GetMapping
-    public List<VendedorDto> getAll() {
-        return vendedorService.getAll();
+    public ResponseEntity<Object> getAll(@RequestBody DatasDeVendasDto datasDeVendasDto) {
+        if (datasDeVendasDto.dataInit() == null|| datasDeVendasDto.dataFim() == null){
+            return ResponseEntity.badRequest().body("Há algo errado no body do request");
+
+        } else{
+
+            return ResponseEntity.ok(vendedorService.getAll(datasDeVendasDto));
+        }
+
+
+
     }
 
     @PostMapping("/post")

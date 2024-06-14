@@ -1,5 +1,6 @@
 package com.orgvendas.domain.service;
 
+import com.orgvendas.domain.dto.vendedor.DatasDeVendasDto;
 import com.orgvendas.domain.entity.Vendedor;
 import com.orgvendas.domain.dto.vendedor.VendedorCreateDto;
 import com.orgvendas.domain.dto.vendedor.VendedorDto;
@@ -31,11 +32,12 @@ public class VendedorService {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    //Retorna todos os vendedores
-    public List<VendedorDto> getAll() {
+    //Retorna todos os vendedores com suas respectivas medias
+    public List<VendedorDto> getAll(DatasDeVendasDto datasDeVendasDto) {
+
         List<Vendedor> vendedorList = vendedorRepository.findAll();
         new VendedorMapper();
-        return VendedorMapper.mapListVendedores(vendedorList);
+        return VendedorMapper.mapListVendedores(vendedorList, datasDeVendasDto);
     }
 
     //Atualiza os vendedores
