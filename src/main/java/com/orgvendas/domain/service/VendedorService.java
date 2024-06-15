@@ -8,6 +8,7 @@ import com.orgvendas.domain.dto.vendedor.VendedorUpdateDto;
 import com.orgvendas.domain.mapper.VendedorMapper;
 import com.orgvendas.domain.repository.VendedorRepository;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,6 @@ import java.util.Optional;
 
 @Service
 public class VendedorService {
-
     VendedorRepository vendedorRepository;
 
     public VendedorService(VendedorRepository vendedorRepository) {
