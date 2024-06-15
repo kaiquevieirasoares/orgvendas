@@ -1,5 +1,6 @@
 package com.orgvendas.controllers;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.orgvendas.domain.dto.vendas.VendasCreateDto;
 import com.orgvendas.domain.service.VendasService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,6 @@ public class VendasController {
     @Autowired
     private VendasService vendasService;
 
-    @GetMapping
-    public String index() {
-        return "Vendas";
-    }
 
     @PostMapping("/post")
     public ResponseEntity<Object> post(@RequestBody VendasCreateDto vendasCreateDto) {
@@ -26,6 +23,12 @@ public class VendasController {
         }else{
              return vendasService.create(vendasCreateDto);
         }
+    }
+
+    @DeleteMapping("/delete/{vendasId}")
+    public ResponseEntity<Object> delete( @JsonProperty("venda_id") @PathVariable Long vendasId) {
+        return vendasService.delete(vendasId);
+
     }
 
 

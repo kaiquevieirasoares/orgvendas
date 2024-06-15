@@ -26,12 +26,10 @@ public class VendasService {
     //cria uma venda
     public ResponseEntity<Object> create(VendasCreateDto vendasCreateDto) {
         Long id = vendasCreateDto.vendedorId();
-
         Optional<Vendedor> vendedorOptional = vendedorRepository.findById(id);
 
         if (vendedorOptional.isPresent()) {
             Vendedor vendedor = vendedorOptional.get();
-
             vendedor.setTotalDeVendas(vendedor.getTotalDeVendas() + 1);
 
             Vendas venda =  VendasMapper.createVendas(vendasCreateDto,vendedor);
@@ -42,5 +40,18 @@ public class VendasService {
         }else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+    }
+
+    public ResponseEntity<Object> delete(Long vendas_id) {
+        Optional<Vendas> vendasOptional = vendasRepository.findById(vendas_id);
+        if (vendasOptional.isPresent()) {
+            Vendas venda = vendasOptional.get();
+            Vendedor vendedor = venda.getVendedor();
+            vendedor.setTotalDeVendas(vendedor.getTotalDeVendas() - 1);
+            vendedorRepository.save(vendedor);
+            vendasRepository.delete(venda);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 }
