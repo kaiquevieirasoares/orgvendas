@@ -72,8 +72,13 @@ public class VendedorService {
 
         if (vendedorOptional.isPresent()) {
             Vendedor vendedor = vendedorOptional.get();
-            vendedorRepository.deleteById(id);
-            return ResponseEntity.ok().body("O(a) vendedor(a) " + vendedor.getNome()+ " foi deletado(a). ");
+            if(vendedor.getTotalDeVendas()>0){
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Para deletar esse(a) vendedor(a) é necessário que as vendas associadas a ele(a) sejam tranferidas ou deletadas");
+            }else{
+                vendedorRepository.deleteById(id);
+                return ResponseEntity.ok().body("O(a) vendedor(a) " + vendedor.getNome()+ " foi deletado(a). ");
+            }
+
         } else{
             return ResponseEntity.notFound().build();
         }
