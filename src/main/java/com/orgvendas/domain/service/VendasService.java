@@ -38,7 +38,7 @@ public class VendasService {
 
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 

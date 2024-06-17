@@ -49,7 +49,6 @@ class VendedorServiceTest {
         VendedorCreateDto vendedorCreateDto = new VendedorCreateDto("Samily");
 
         ResponseEntity<Vendedor> response = vendedorService.create(vendedorCreateDto);
-
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         verify(vendedorRepository, times(1)).save(any(Vendedor.class));
     }

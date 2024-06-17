@@ -1,6 +1,5 @@
 package com.orgvendas.domain.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
