@@ -30,10 +30,51 @@ This API was created for managing sales associated with their respective sellers
 
 ou diretamente do Github:
 
-
 ![clone-repository-img](docs/clone-project.png)
 
-- ### Instalando as dependências listadas no pom.xml.
+
+### End-points da API
+## Tabela de Vendedor
+#### Get-All- retorna todos os vendedores e suas respectivas médias de acordo com as datas.
+URL: http://localhost:8080/api/v1/vendedor
+
+- - Body necessário :  {
+    "data-inicial":"1999-02-03",
+    "data-fim":"1999-09-07"
+    }
+#### post - Cria um vendedor .
+URL: http://localhost:8080/api/v1/vendedor/post
+- - Body necessário :  {"nome": "nome do vendedor"}
+
+#### update - atualiza um vendedor existente a partir do ID.
+URL: http://localhost:8080/api/v1/vendedor/update/1
+obs: o número é o ID do vendedor.
+- - Body necessário :  {"nome": "novo nome para atualização"}
+
+
+#### delete - deleta um vendedor a partir do id.
+URL: http://localhost:8080/api/v1/vendedor/delete/3
+- - obs: A requisição para deletar um vendedor só funcionará se o vendedor não tiver vendas associadas a ele.
+- - Obs: o número é o ID do vendedor
+
+## Tabela de Vendas
+#### post - cria uma venda.
+URL: http://localhost:8080/api/v1/vendas/post
+- - body necessário: {
+  "valor":1800 ,
+  "data_venda":"2023-05-10",
+  "vendedor_id":1
+  }
+- Obs: A venda só será criada se o vendedor associado ao ID exister no bando de dados.
+
+
+#### delete - deleta uma venda a partir do id.
+URL: http://localhost:8080/api/v1/vendas/delete/1
+
+- Obs: O último número representa o ID da venda.
+
+
+## Instalando as dependências listadas no pom.xml.
 
 - ``` mvn install```
 
@@ -42,6 +83,8 @@ ou diretamente do Github:
 
 - ### Testando o projeto
 - ``` mvn test```
+
+
 
 
 ### Tabela de Códigos HTTP 
