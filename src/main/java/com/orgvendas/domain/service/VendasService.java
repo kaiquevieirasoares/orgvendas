@@ -23,7 +23,6 @@ public class VendasService {
         this.vendedorRepository = vendedorRepository;
     }
 
-    //cria uma venda
     public ResponseEntity<Object> create(VendasCreateDto vendasCreateDto) {
         Long id = vendasCreateDto.vendedorId();
         Optional<Vendedor> vendedorOptional = vendedorRepository.findById(id);

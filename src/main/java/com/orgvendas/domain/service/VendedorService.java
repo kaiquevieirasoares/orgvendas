@@ -23,7 +23,6 @@ public class VendedorService {
         this.vendedorRepository = vendedorRepository;
     }
 
-    // Cria um vendedor
     public ResponseEntity<Vendedor> create(VendedorCreateDto vendedorCreateDto) {
         Vendedor newVendedor = new Vendedor();
         BeanUtils.copyProperties(vendedorCreateDto, newVendedor);
@@ -31,7 +30,6 @@ public class VendedorService {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    //Retorna todos os vendedores com suas respectivas medias
     public List<VendedorDto> getAll(DatasDeVendasDto datasDeVendasDto) {
 
         List<Vendedor> vendedorList = vendedorRepository.findAll();
@@ -39,7 +37,6 @@ public class VendedorService {
         return VendedorMapper.mapListVendedores(vendedorList, datasDeVendasDto);
     }
 
-    //Atualiza os vendedores
     public ResponseEntity<Object> update(VendedorUpdateDto vendedorUpdateDto, Long id) {
         Optional<Vendedor> vendedorOptional = vendedorRepository.findById(id);
 
@@ -55,7 +52,6 @@ public class VendedorService {
 
     }
 
-    // busca por id
     public ResponseEntity<Object> getById(Long id) {
         Optional<Vendedor> vendedorOptional = vendedorRepository.findById(id);
         if (vendedorOptional.isPresent()) {
@@ -66,7 +62,6 @@ public class VendedorService {
         return ResponseEntity.notFound().build();
     }
 
-    //Deleta um vendedor
     public ResponseEntity<String> delete(Long id) {
         Optional<Vendedor> vendedorOptional = vendedorRepository.findById(id);
 
